@@ -1,0 +1,58 @@
+
+* Description
+  _curry_ is a module that allows (almost) arbitrary python functions to be pickled and remotely executed.
+  This module works with both _pickle_ and _cPickle_ python modules.
+
+* Caveats
+** Python versions
+   Due to a dependence on the _marshal_ module, the version of python
+   that unpickles and executes the curried function needs to be the
+   same as the version that pickled the function.
+** Subclassing
+   While _curry.curry_ looks like function application, it is really a
+   constructor for a class implementing the ___call___ method. Due to
+   the way objects are pickled, subclassing _curry.curry_ is prohibited.
+** Recursive currying/partial application
+   Do not try to curry an already curried object or a function
+   obtained from applying _functools.partial_.
+** Function default parameters
+   In order to avoid problems do not directly specify default keyword
+   arguments.
+   #+BEGIN_SRC python
+   # this is bad, do not do this
+   def foo(x, y, z=1): pass
+   #+END_SRC
+   Instead pop the defaults out of the _**kwargs_ dictionary:
+   #+BEGIN_SRC python
+   # this is good, do this
+   def foo(x, y, **kws):
+       z = kws.pop('z', 1)
+   #+END_SRC
+
+* Installation
+  #+BEGIN_SRC bash
+  $ python setup.py install
+  #+END_SRC
+
+* Example
+  #+BEGIN_SRC python
+  import curry
+  import pickle
+
+  # define some function
+  def foo(x, y, **kws)
+      z = kws.pop('z', 1)
+	  return x * y * z
+
+  # "I wear a function now. Functions are cool"
+  fn = curry.curry(foo, 3, z=9)
+
+  with open('function.pkl', 'w') as fd:
+      pickle.dump(fn, fd)
+
+  with open('function.pkl') as fd:
+      h = pickle.load(fd)
+
+  # prints 162
+  print h(6)
+  #+END_SRC
