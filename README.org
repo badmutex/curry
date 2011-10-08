@@ -1,21 +1,30 @@
-
 * Description
   "The spice must flow!"
-  *curry* is a module that allows (almost) arbitrary python functions to be pickled and remotely executed.
-  This module works with both *pickle* and *cPickle* python modules.
+  In this case, we need functions to sate our addiction.
+
+
+  *curry* is a module that allows (almost) arbitrary python functions
+  -- with some caveats -- to be pickled and remotely executed.
+
+
+  *curry* works with both *pickle* and *cPickle* python modules.
 
 * Caveats
 ** Python versions
    Due to a dependence on the *marshal* module, the version of python
    that unpickles and executes the curried function needs to be the
    same as the version that pickled the function.
+   See the [[http://docs.python.org/library/marshal][marshal module]] for more details.
+
 ** Subclassing
-   While _curry.curry_ looks like function application, it is really a
-   constructor for a class implementing the __call__ method. Due to
+   While *curry.curry* looks like function application, it is really a
+   constructor for a class implementing the /__call__/ method. Due to
    the way objects are pickled, subclassing *curry.curry* is prohibited.
+
 ** Recursive currying/partial application
    Do not try to curry an already curried object or a function
    obtained from applying *functools.partial*.
+
 ** Function default parameters
    In order to avoid problems do not directly specify default keyword
    arguments.
@@ -30,10 +39,12 @@
        z = kws.pop('z', 1)
    #+END_SRC
 
+
 * Installation
   #+BEGIN_SRC bash
   $ python setup.py install
   #+END_SRC
+
 
 * Example
   #+BEGIN_SRC python
