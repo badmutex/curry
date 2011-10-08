@@ -5,10 +5,11 @@ import marshal
 class curry(object):
     def __init__(self, fn, *args, **kws):
         if not type(self) == curry:
-            raise TypeError, "In the interests of sanity, 'curry' cannot be subclassed"
+            raise TypeError, "In the interests of sanity, please do not subclass 'curry'"
 
         if not type(fn) == types.FunctionType:
-            raise TypeError, "Cannot curry a curried function. Expected %s but got %s" % (types.FunctionType, type(fn))
+            raise TypeError, "Cannot curry a curried function. Expected %s but got %s" % \
+                (types.FunctionType, type(fn))
 
         self.fn        = fn
         self.args      = args
