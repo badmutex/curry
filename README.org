@@ -4,7 +4,7 @@
 
 
   *curry* is a module that allows (almost) arbitrary python functions
-  -- with some caveats -- to be pickled and remotely executed.
+  (with some caveats) to be pickled and remotely executed.
 
 
   *curry* works with both *pickle* and *cPickle* python modules.
