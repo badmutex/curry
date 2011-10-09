@@ -5,7 +5,7 @@ setup(name         = 'curry',
       py_modules   = ['curry'],
       author       = "Badi' Abdul-Wahid",
       author_email = 'abdulwahidc@gmail.com',
-      url          = 'https://github.com/badi/max',
+      url          = 'https://github.com/badi/curry',
       license      = 'BSD',
       description  = 'Pickle-able partial functions'
       )
