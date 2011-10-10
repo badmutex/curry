@@ -54,7 +54,7 @@
   # define some function
   def foo(x, y, **kws)
       z = kws.pop('z', 1)
-	  return x * y * z
+      return x * y * z
 
   # "I wear a function now. Functions are cool"
   fn = curry.curry(foo, 3, z=9)
